@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title Movie App
+    link(rel="stylesheet", href="/styles.css")
+  body
+    nav
+      a(href="/") Home
+      a(href="/movies") Movies
+      if !user
+        a(href="/login") Login
+        a(href="/register") Register
+      if user
+        a(href="/movies/add") Add Movie
+        form(method="POST", action="/logout", style="display:inline")
+          button(type="submit") Logout
+
+    block content

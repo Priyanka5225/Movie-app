@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1 Login
+  if errors.general
+    .error-message(style='color: red; margin-bottom: 15px;')= errors.general
+  form(method='POST')
+    if errors.email
+      .error-message(style='color: red;')= errors.email
+    input(type='email' name='email' placeholder='Email'  value=email)
+    br
+    if errors.password
+      .error-message(style='color: red;')= errors.password
+    input(type='password' name='password' placeholder='Password')
+    br
+    button(type='submit') Login
+
+//- extends layout
+
+//- block content
+//-   .form-container
+//-     h1 Login
+
+//-     if errors.length
+//-       ul(style="color:red")
+//-         each error in errors
+//-           li= error.msg
+
+//-     form.form-box(method="POST", action="/login")
+//-       input(type="email", name="email", placeholder="Email", value=(oldInput && oldInput.email) || '')
+//-       input(type="password", name="password", placeholder="Password")
+//-       button(type="submit") Login
+

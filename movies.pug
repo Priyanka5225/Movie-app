@@ -1,0 +1,26 @@
+//- movies.pug
+extends ../views/layout
+
+block content
+  h2 Movie List
+
+  each movie in movies
+    .movie-card
+      h3 #{movie.title} (#{movie.year})
+      p
+        strong Director:
+        | #{movie.director}
+      p
+        strong Genre:
+        | #{movie.genre}
+      p
+        strong Rating:
+        | #{movie.rating}
+      p Created by: #{movie.createdBy && movie.createdBy.name ? movie.createdBy.name : 'N/A'}
+
+      a(href=`/movies/${movie._id}`) View
+
+      if user && movie.createdBy && user._id === movie.createdBy._id.toString()
+        a(href=`/movies/${movie._id}/edit`) Edit
+        form(action=`/movies/${movie._id}/delete`, method="POST", style="display:inline")
+          button(type="submit", onclick="return confirm('Are you sure you want to delete this movie?')") Delete

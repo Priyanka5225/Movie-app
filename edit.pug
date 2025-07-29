@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  .form-container
+    h1 Edit Movie
+
+    // Show validation errors if any
+    if errors && errors.length
+      ul(style="color: red")
+        each error in errors
+          li= error.msg
+
+    form.form-box(action=`/movies/${movie._id}/edit`, method="POST")
+      input(type="text", name="title", placeholder="Title", value=(movie && movie.title) || '')
+      input(type="text", name="director", placeholder="Director", value=(movie && movie.director) || '')
+      input(type="number", name="year", placeholder="Year", value=(movie && movie.year) || '')
+      input(type="text", name="genre", placeholder="Genre", value=(movie && movie.genre) || '')
+      input(type="number", name="rating", placeholder="Rating (0–10)", min="0", max="10", step="0.1", value=(movie && movie.rating) || '')
+      textarea(name="description") #{(movie && movie.description) || ''}
+      button(type="submit") Save Changes
+      a.cancel-btn(href="/movies") Cancel
+

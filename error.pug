@@ -1,0 +1,28 @@
+doctype html
+html(lang="en")
+  head
+    title= title || 'Movie App'
+    link(rel='stylesheet', href='/styles.css')
+  body
+    header
+      h1 Movie App
+      nav
+        if user
+          span Welcome, #{user.name}!
+          a(href="/movies") All Movies
+          a(href="/movies/add") Add Movie
+          form(action="/logout", method="POST")
+            button(type="submit") Logout
+        else
+          a(href="/login") Login
+          a(href="/register") Register
+
+    if flash
+      div(class=`flash-${flash.type}`)
+        p= flash.message
+
+    main
+      block content
+
+    footer
+      p © 2023 Movie App

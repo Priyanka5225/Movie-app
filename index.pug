@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Movie App
+  if user
+    p Welcome back, #{user.name}!
+  else
+    p Please login or register to continue.

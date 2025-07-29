@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  .form-container
+    h1 Add Movie
+
+    if errors && errors.length
+      ul(style="color:red")
+        each error in errors
+          li= error.msg
+
+    form.form-box(method="POST", action="/movies")
+      label(for="title") Title
+      input(type="text", name="title", id="title", placeholder="Title", value=(movie && movie.title) || '')
+
+      label(for="director") Director
+      input(type="text", name="director", id="director", placeholder="Director", value=(movie && movie.director) || '')
+
+      label(for="year") Year
+      input(type="number", name="year", id="year", placeholder="Year", min="1888", value=(movie && movie.year) || '')
+
+      label(for="genre") Genre
+      select(name="genre", id="genre")
+        option(value='') Select Genre
+        - const genres = ['Action', 'Comedy', 'Drama', 'Horror', 'Sci-Fi', 'Thriller', 'Other']
+        each g in genres
+          option(value=g selected=(movie && movie.genre === g)) #{g}
+
+      label(for="rating") Rating (0–10)
+      input(type="number", name="rating", id="rating", placeholder="Rating", min="0", max="10", step="0.1", value=(movie && movie.rating) || '')
+
+      label(for="description") Description
+      textarea(name="description", id="description") #{(movie && movie.description) || ''}
+
+      button(type="submit") Save
+      a.cancel-btn(href="/movies") Cancel
+
+

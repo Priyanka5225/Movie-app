@@ -1,0 +1,140 @@
+extends layout.pug
+
+block content
+  .container(style='max-width: 500px; margin: 2rem auto; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px;')
+    h1(style='text-align: center; margin-bottom: 1.5rem;') Register
+
+    if errors && errors.general
+      .alert(style='color: red; margin-bottom: 1rem; padding: 0.5rem; background: #ffeeee; border-radius: 4px;')
+        if Array.isArray(errors.general)
+          each error in errors.general
+            div= error
+        else
+          = errors.general
+
+    form(method='POST', action='/register', style='display: flex; flex-direction: column; gap: 1.25rem;')
+      .form-group(style='display: flex; flex-direction: column; gap: 0.5rem;')
+        label(for='name', style='font-weight: 600;') Name
+        input(
+          type='text',
+          name='name',
+          id='name',
+          value=(formData && formData.name) || '',
+          style='padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'
+        )
+        if errors && errors.name
+          .error-message(style='color: red; font-size: 0.875rem;')
+            if Array.isArray(errors.name)
+              each error in errors.name
+                div= error
+            else
+              = errors.name
+
+      .form-group(style='display: flex; flex-direction: column; gap: 0.5rem;')
+        label(for='email', style='font-weight: 600;') Email
+        input(
+          type='email',
+          name='email',
+          id='email',
+          value=(formData && formData.email) || '',
+          style='padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'
+        )
+        if errors && errors.email
+          .error-message(style='color: red; font-size: 0.875rem;')
+            if Array.isArray(errors.email)
+              each error in errors.email
+                div= error
+            else
+              = errors.email
+
+      .form-group(style='display: flex; flex-direction: column; gap: 0.5rem;')
+        label(for='password', style='font-weight: 600;') Password
+        input(
+          type='password',
+          name='password',
+          id='password',
+          style='padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'
+        )
+        if errors && errors.password
+          .error-message(style='color: red; font-size: 0.875rem;')
+            if Array.isArray(errors.password)
+              each error in errors.password
+                div= error
+            else
+              = errors.password
+
+      button(
+        type='submit',
+        style='padding: 0.75rem; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;'
+      ) Register
+
+
+//- extends layout.pug
+
+//- block content
+//-   .container(style='max-width: 500px; margin: 2rem auto; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px;')
+//-     h1(style='text-align: center; margin-bottom: 1.5rem;') Register
+
+//-     if errors && errors.general
+//-       .alert(style='color: red; margin-bottom: 1rem; padding: 0.5rem; background: #ffeeee; border-radius: 4px;')
+//-         if Array.isArray(errors.general)
+//-           each error in errors.general
+//-             div= error
+//-         else
+//-           = errors.general
+
+//-     form(method='POST', action='/register', style='display: flex; flex-direction: column; gap: 1.25rem;')
+//-       .form-group(style='display: flex; flex-direction: column; gap: 0.5rem;')
+//-         label(for='name', style='font-weight: 600;') Name
+//-         input(
+//-           type='text',
+//-           name='name',
+//-           id='name',
+//-           value=(formData && formData.name) || '',
+//-           style='padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'
+//-         )
+//-         if errors && errors.name
+//-           .error-message(style='color: red; font-size: 0.875rem;')
+//-             if Array.isArray(errors.name)
+//-               each error in errors.name
+//-                 div= error
+//-             else
+//-               = errors.name
+
+//-       .form-group(style='display: flex; flex-direction: column; gap: 0.5rem;')
+//-         label(for='email', style='font-weight: 600;') Email
+//-         input(
+//-           type='email',
+//-           name='email',
+//-           id='email',
+//-           value=(formData && formData.email) || '',
+//-           style='padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'
+//-         )
+//-         if errors && errors.email
+//-           .error-message(style='color: red; font-size: 0.875rem;')
+//-             if Array.isArray(errors.email)
+//-               each error in errors.email
+//-                 div= error
+//-             else
+//-               = errors.email
+
+//-       .form-group(style='display: flex; flex-direction: column; gap: 0.5rem;')
+//-         label(for='password', style='font-weight: 600;') Password
+//-         input(
+//-           type='password',
+//-           name='password',
+//-           id='password',
+//-           style='padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px;'
+//-         )
+//-         if errors && errors.password
+//-           .error-message(style='color: red; font-size: 0.875rem;')
+//-             if Array.isArray(errors.password)
+//-               each error in errors.password
+//-                 div= error
+//-             else
+//-               = errors.password
+
+//-       button(
+//-         type='submit',
+//-         style='padding: 0.75rem; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: 600; margin-top: 0.5rem;'
+//-       ) Register

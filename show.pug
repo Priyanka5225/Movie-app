@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  h1 #{movie.title} (#{movie.year})
+
+  p
+    strong Director:
+    |  #{movie.director}
+
+  p
+    strong Genre:
+    |  #{movie.genre}
+
+  p
+    strong Rating:
+    |  #{movie.rating}
+
+  p
+    strong Description:
+    |  #{movie.description}
+
+  a(href="/movies") ← Back to Movies
